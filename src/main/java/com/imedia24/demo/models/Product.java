@@ -21,7 +21,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String nameProduct;
+    private String productName;
     private double price;
 
     @ManyToOne
