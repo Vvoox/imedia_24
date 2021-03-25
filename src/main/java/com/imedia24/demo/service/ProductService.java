@@ -5,6 +5,7 @@ import com.imedia24.demo.models.Currency;
 import com.imedia24.demo.models.Product;
 import com.imedia24.demo.models.Rate;
 import com.imedia24.demo.openFeign.CurrencyExchange;
+import com.imedia24.demo.repositories.CategoryRepository;
 import com.imedia24.demo.repositories.ProductRepository;
 import com.imedia24.demo.repositories.RateRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final CategoryService categoryService;
     private final CurrencyService currencyService;
+    private final CategoryRepository categoryRepository;
 
     public Product getProductById(long id){
         return productRepository.findById(id).orElseThrow(
@@ -62,7 +64,7 @@ public class ProductService {
 
     public void addCurrenciesAndCategory(Product product){
         try{
-            log.info("Looking for category with id"+product.getPermanentCategoryId());
+            log.info("Looking for category with id :"+product.getPermanentCategoryId());
             Category category = categoryService.getCategoryById(product.getPermanentCategoryId());
             log.info(category);
             product.setCategory(category);

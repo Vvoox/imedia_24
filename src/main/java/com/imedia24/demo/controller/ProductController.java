@@ -3,6 +3,7 @@ package com.imedia24.demo.controller;
 import com.imedia24.demo.models.Currency;
 import com.imedia24.demo.models.Product;
 import com.imedia24.demo.openFeign.CurrencyExchange;
+import com.imedia24.demo.repositories.CategoryRepository;
 import com.imedia24.demo.service.ProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,21 +38,21 @@ public class ProductController {
         return productService.getAllProduct();
     }
 
-    @GetMapping("/name/{product}")
+    @GetMapping("/name")
     @ApiOperation(value = "Get Product by name")
-    public List<Product> getProductsByName(@PathVariable String product){
+    public List<Product> getProductsByName(@RequestParam String product){
         return productService.getProductsByName(product);
     }
 
-    @GetMapping("/category/{category}")
+        @GetMapping("/category")
     @ApiOperation(value = "Get Product by Category")
-    public List<Product> getProductsByCategory(@PathVariable String category){
+    public List<Product> getProductsByCategory(@RequestParam String category){
         return productService.getProductByCategoryName(category);
     }
 
-    @GetMapping("/price/{price}")
+    @GetMapping("/price")
     @ApiOperation(value = "Get Product by Category")
-    public List<Product> getProductsByPrice(@PathVariable double price){
+    public List<Product> getProductsByPrice(@RequestParam double price){
         return productService.getProductsByPrice(price);
     }
 

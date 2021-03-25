@@ -28,8 +28,8 @@ public class Category {
     private String categoryName;
     private String categoryType;
 
-    @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"product","category"})
+    @OneToMany
+//    @JsonIgnoreProperties({"product","category"})
     private List<Product> product;
 
     @CreationTimestamp

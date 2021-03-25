@@ -38,7 +38,7 @@ public class Product {
     private long permanentCategoryId;
 
     @ManyToOne
-    @JsonIgnoreProperties({"product"})
+    @JsonIgnoreProperties({"product","category"})
     private Category category;
 
     @OneToMany

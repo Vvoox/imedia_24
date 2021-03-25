@@ -24,9 +24,10 @@ public class CurrencyService {
 
     public List<Rate> setCurrenciesIntoProduct(Product product){
         Currency currency = currencyExchange.getCurrency();
+        double price = product.getPrice();
         List<Rate> rates = new ArrayList<>();
         currency.getRates().forEach((name,value) ->{
-            Rate rate = Rate.builder().name(name).value(value).build();
+            Rate rate = Rate.builder().name(name).value(value*price).build();
             rates.add(rate);
             rateRepository.save(rate);
         });

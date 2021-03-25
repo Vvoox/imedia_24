@@ -27,6 +27,7 @@ public class CategoryController {
         return categoryService.getCategoryById(id);
     }
 
+
     @GetMapping("/all")
     @ApiOperation(value = "Get All Categories")
     public List<Category> getAllCategory(){
