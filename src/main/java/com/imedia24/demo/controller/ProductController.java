@@ -1,12 +1,16 @@
 package com.imedia24.demo.controller;
 
+import com.imedia24.demo.models.Currency;
 import com.imedia24.demo.models.Product;
+import com.imedia24.demo.openFeign.CurrencyExchange;
 import com.imedia24.demo.service.ProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -14,9 +18,11 @@ import java.util.Map;
 @RequestMapping("/product")
 @RequiredArgsConstructor
 @Api(description = "Products APIs")
+@Log4j2
 public class ProductController {
 
     private final ProductService productService;
+    private final CurrencyExchange currency;
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Get Product by id")
@@ -27,6 +33,7 @@ public class ProductController {
     @GetMapping("/all")
     @ApiOperation(value = "Get All Products")
     public List<Product> getAllProducts(){
+        log.info(currency.getCurrency());
         return productService.getAllProduct();
     }
 
@@ -42,15 +49,21 @@ public class ProductController {
         return productService.getProductByCategoryName(category);
     }
 
-    @PostMapping()
+    @GetMapping("/price/{price}")
+    @ApiOperation(value = "Get Product by Category")
+    public List<Product> getProductsByPrice(@PathVariable double price){
+        return productService.getProductsByPrice(price);
+    }
+
+    @PostMapping("/add")
     @ApiOperation(value = "Add Product")
-    public Product addProduct(@RequestBody Product product){
+    public Product addProduct(@RequestBody @Valid Product product){
         return productService.addProduct(product);
     }
 
     @PutMapping("/{id}/modify")
     @ApiOperation(value = "Modify Product")
-    public Product modifyProduct(@PathVariable long id,@RequestBody Product product){
+    public Product modifyProduct(@PathVariable long id,@RequestBody @Valid Product product){
         return productService.modifyProduct(id,product);
     }
 

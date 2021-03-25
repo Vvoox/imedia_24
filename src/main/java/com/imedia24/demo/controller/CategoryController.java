@@ -9,11 +9,12 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/Category")
+@RequestMapping("/category")
 @RequiredArgsConstructor
 @Api(description = "Category APIs")
 public class CategoryController {
@@ -40,13 +41,13 @@ public class CategoryController {
 
     @PostMapping
     @ApiOperation(value = "Add Category")
-    public Category addCategory(@RequestBody Category category){
+    public Category addCategory(@RequestBody @Valid Category category){
         return categoryService.addCategory(category);
     }
 
     @PutMapping("/{id}/modify")
     @ApiOperation(value = "Modify Category")
-    public Category modifyCategory(@PathVariable long id,@RequestBody Category category){
+    public Category modifyCategory(@PathVariable long id,@RequestBody @Valid Category category){
         return categoryService.modifyCategory(id,category);
     }
 
