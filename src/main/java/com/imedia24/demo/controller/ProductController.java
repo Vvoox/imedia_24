@@ -34,7 +34,6 @@ public class ProductController {
     @GetMapping("/all")
     @ApiOperation(value = "Get All Products")
     public List<Product> getAllProducts(){
-        log.info(currency.getCurrency());
         return productService.getAllProduct();
     }
 
