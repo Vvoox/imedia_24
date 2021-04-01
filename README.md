@@ -55,6 +55,6 @@ services:
 * Run your project
 * Open [http://localhost:yourport/swagger-ui/#](http://localhost:yourport/swagger-ui/#)
 
-![Scheme](imageR/swagger.png)
+![Scheme](imedia_24_challenge/imageR/swagger.png)
 
 
