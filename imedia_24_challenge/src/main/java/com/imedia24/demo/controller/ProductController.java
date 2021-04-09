@@ -16,10 +16,11 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
 @RequiredArgsConstructor
 @Api(description = "Products APIs")
 @Log4j2
+@CrossOrigin
 public class ProductController {
 
     private final ProductService productService;
@@ -43,7 +44,7 @@ public class ProductController {
         return productService.getProductsByName(product);
     }
 
-        @GetMapping("/category")
+    @GetMapping("/category")
     @ApiOperation(value = "Get Product by Category")
     public List<Product> getProductsByCategory(@RequestParam String category){
         return productService.getProductByCategoryName(category);
